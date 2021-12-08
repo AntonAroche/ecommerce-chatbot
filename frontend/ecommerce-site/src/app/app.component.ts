@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ITEMS } from './mockItems';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+  items = ITEMS
   showFiller = false;
   title = 'ecommerce-site';
 }

@@ -61,7 +61,7 @@
     margin: 0;
   }
 
-  .products {
+  .item-container {
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
@@ -96,62 +96,15 @@
 </div>
 
 <div class="content" role="main">
-  <div class="products">
-    <div class="item-row">
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-    </div>
-    <div class="item-row">
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-    </div>
-    <div class="item-row">
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-    </div>
-    <div class="item-row">
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-    </div>
-    <div class="item-row">
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-    </div>
-    <div class="item-row">
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-    </div>
-    <div class="item-row">
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
-      <app-storeitem></app-storeitem>
+  <div class="item-container">
+    <div *ngFor="let item of items; let i = index">
+      <div *ngIf="i % 5 == 0" class="item-row">
+        <app-storeitem [item]="item"></app-storeitem>
+        <app-storeitem *ngIf="i + 1 < items.length" [item]="items[i + 1]"></app-storeitem>
+        <app-storeitem *ngIf="i + 2 < items.length" [item]="items[i + 2]"></app-storeitem>
+        <app-storeitem *ngIf="i + 3 < items.length" [item]="items[i + 3]"></app-storeitem>
+        <app-storeitem *ngIf="i + 4 < items.length" [item]="items[i + 4]"></app-storeitem>
+      </div>
     </div>
   </div>
 </div>

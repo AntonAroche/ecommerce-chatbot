@@ -14,11 +14,11 @@
         margin-left: 1em;
     }
 </style>
-<h2>{{storeitem.name}}</h2>
+<h2>{{item.name}}</h2>
 <div>
-    <img height="100" [src]="storeitem.src" />
+    <img height="100" [src]="item.src" />
 </div>
 <div class="listing">
-    <span>${{storeitem.price}}</span>
+    <span>${{item.price}}</span>
     <button mat-raised-button color="accent">Buy</button>
 </div>

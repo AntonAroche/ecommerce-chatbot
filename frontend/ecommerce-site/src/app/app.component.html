@@ -13,7 +13,12 @@
   }
 
   .spacer {
-    flex: 1;
+    width: 4em;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
   }
 
   .toolbar {
@@ -24,34 +29,136 @@
     height: 40px;
     padding: 16px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: #1976d2;
-    color: white;
+    background-color: #1fd163;
+    color: rgb(230, 244, 248);
     font-weight: 600;
   }
 
-  .content {
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    background-size: cover;
+    background-attachment: fixed;
+    align-items: center;
+    background-color: #c7eed6;
+    color: rgb(249, 254, 255);
+    font-weight: 600;
+  }
+
+  .spacer {
+    max-width: 20px;
+  }
+
+  div {
+    margin: 0;
+  }
+
+  .products {
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
     max-width: 960px;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .item-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .button-cart {
+    padding: 1em;
+  }
+
+  app-storeitem {
+    margin: 1em;
   }
 </style>
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <h1>Naturalia</h1>
+  <button mat-raised-button color="accent" class="button-cart">
+    <i class="fas fa-shopping-cart"></i>
+  </button>
 </div>
 
 <div class="content" role="main">
-  <app-storeitem></app-storeitem>
-  <app-storeitem></app-storeitem>
-  <app-storeitem></app-storeitem>
-  <app-storeitem></app-storeitem>
+  <div class="products">
+    <div class="item-row">
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+    </div>
+    <div class="item-row">
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+    </div>
+    <div class="item-row">
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+    </div>
+    <div class="item-row">
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+    </div>
+    <div class="item-row">
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+    </div>
+    <div class="item-row">
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+    </div>
+    <div class="item-row">
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+      <app-storeitem></app-storeitem>
+    </div>
+  </div>
+</div>
+
+<div class="footer" role="banner">
+  <h2>Copyright 2021</h2>
+  <div class="spacer"></div>
 </div>
 
 <router-outlet></router-outlet>

@@ -1,10 +1,24 @@
+<style>
+    div {
+        color: gray;
+    }
+
+    .listing {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button {
+        margin-left: 1em;
+    }
+</style>
 <h2>{{storeitem.name}}</h2>
 <div>
-    <span>Id:</span>{{storeitem.id}}
-</div>
-<div>
-    <span>Price: ${{storeitem.price}}</span>
-</div>
-<div>
     <img height="100" [src]="storeitem.src" />
+</div>
+<div class="listing">
+    <span>${{storeitem.price}}</span>
+    <button mat-raised-button color="accent">Buy</button>
 </div>

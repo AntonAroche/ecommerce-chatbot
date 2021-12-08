@@ -1,0 +1,41 @@
+<style>
+    .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid lightgray;
+        margin: 1em;
+        padding: 1em;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: left;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 150%;
+    }
+
+    .description {
+        margin-bottom: 0.5em;
+    }
+
+    button {
+        width: 200px;
+    }
+</style>
+
+<div class="item">
+    <img height="180" [src]="item.src" />
+    <div class="info">
+        <span class=title>{{item.name}}</span>
+        <span class=description>{{item.description}}</span>
+        <span><strong>Price:</strong> ${{item.price}}</span>
+        <button mat-raised-button color="accent">Add to cart</button>
+    </div>
+</div>

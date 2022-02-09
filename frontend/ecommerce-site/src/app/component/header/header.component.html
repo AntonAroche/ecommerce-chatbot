@@ -1,14 +1,5 @@
 <style>
     .toolbar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 40px;
-        padding: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         background-color: #1fd163;
         color: rgb(230, 244, 248);
         font-weight: 600;
@@ -17,11 +8,33 @@
     h1 {
         margin: 0;
     }
+
+    .count {
+        margin-left: 5px;
+        font-size: 10px;
+        background-color: #20D163;
+    }
+
+    .navButtons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 140px;
+    }
 </style>
 
-<div class="toolbar" role="banner">
-    <h1>Naturalia</h1>
-    <button mat-raised-button color="accent" class="button-cart">
-        <i class="fas fa-shopping-cart"></i>
-    </button>
-</div>
+<header>
+    <div class="navbar shadow-sm toolbar">
+        <h1>Naturalia</h1>
+        <div class="navButtons">
+            <button routerLink="cart" mat-raised-button color="accent">
+                <i class="fas fa-cart-plus"></i>
+                <div class="badge count">{{totalItem}}</div>
+            </button>
+            <button mat-raised-button color="accent">
+                <i class="fas fa-user" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</header>

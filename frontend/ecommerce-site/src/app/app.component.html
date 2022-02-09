@@ -1,3 +1,59 @@
+<style>
+    .divider {
+        padding-bottom: 50px;
+    }
+</style>
+
 <app-header></app-header>
 <router-outlet></router-outlet>
+<section class="noselect container">
+    <div id="chat_modal" class="hidden-chat noselect">
+        <div class="chat">
+            <div config class="chat-header" *ngIf="config && (config.title || config.subTitle)  ">
+                <div class="chat-icon">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </div>
+                <p class="title" *ngIf="config.title">{{ config.title }}</p>
+                <p class="sub-title" *ngIf="config.subTitle">
+                    {{ config.subTitle }}
+                </p>
+                <span (click)="closeDialog()" class="close-chat"><i class="fa fa-times"></i>
+                </span>
+            </div>
+            <div #autoScroll class="messages-content">
+                <div *ngFor="let msg of messages">
+                    <label [ngClass]="msg.type == 'user' ? 'user-msg' : 'bot-msg'">
+                        {{ msg.message }}</label>
+                </div>
+                <div class="chat-typing" *ngIf="isBotActive">
+                    <div class="chat-typing--bubbles">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="message-box">
+                <input type="text" (keydown.enter)="pushData()" [(ngModel)]="userMessage" class="message-input"
+                    placeholder="Type message..." />
+                <div type="submit" class="noselect message-submit" (click)="pushData()">
+                    Send
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="float-buton-group noselect">
+    <div class="float-button" *ngIf="!isModalActive" (click)="showDialog()">
+        <i class="float-icon fa fa-comment"></i>
+    </div>
+    <div class="float-button" *ngIf="isModalActive" (click)="closeDialog()">
+        <i class="float-icon fa fa-times-circle"></i>
+    </div>
+</div>
+<input [(ngModel)]="message" />
+<button (click)="setData()">Send Bot Response</button>
+<div class=divider></div>
 <app-footer></app-footer>

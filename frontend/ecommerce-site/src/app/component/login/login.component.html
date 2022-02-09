@@ -1,0 +1,102 @@
+<style>
+    .card {
+        height: 60vh;
+        margin: 25px;
+        padding: 25px;
+    }
+
+    .center img {
+        text-decoration: none;
+        color: inherit;
+        border: none;
+        outline: none;
+        height: 162px;
+        width: 250px;
+        margin: 20px 0px;
+    }
+
+    h4,
+    h6 {
+        font-weight: 400;
+    }
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .card-table {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: none;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: .25rem;
+    }
+
+    .center .btn {
+        font-size: 14px !important;
+        margin-top: 20px !important;
+        font-weight: 400;
+        padding: 12px 72px;
+        border-radius: 3px !important;
+    }
+
+    .btn-scolor {
+        background-color: rgb(66, 209, 248);
+    }
+
+    .btn-pcolor {
+        background-color: #69F0AD
+    }
+
+    .btn-dcolor {
+        background-color: #f55050
+    }
+
+    .item-container {
+        margin-top: 25px;
+    }
+
+    .add-btn {
+        margin-right: 3px;
+        margin-left: 2px;
+    }
+</style>
+
+<div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <a routerLink="../register" class="btn btn-link">Register</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -5,7 +5,12 @@
         font-weight: 600;
     }
 
+    a {
+        text-decoration-color: rgb(230, 244, 248);
+    }
+
     h1 {
+        color: rgb(230, 244, 248);
         margin: 0;
     }
 
@@ -26,13 +31,15 @@
 
 <header>
     <div class="navbar shadow-sm toolbar">
-        <h1>Naturalia</h1>
+        <a routerLink="products">
+            <h1>Naturalia</h1>
+        </a>
         <div class="navButtons">
             <button routerLink="cart" mat-raised-button color="accent">
                 <i class="fas fa-cart-plus"></i>
                 <div class="badge count">{{totalItem}}</div>
             </button>
-            <button mat-raised-button color="accent">
+            <button routerLink="login" mat-raised-button color="accent">
                 <i class="fas fa-user" aria-hidden="true"></i>
             </button>
         </div>

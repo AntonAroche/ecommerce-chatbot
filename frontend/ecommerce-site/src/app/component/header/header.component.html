@@ -27,6 +27,11 @@
         align-items: center;
         width: 140px;
     }
+
+    span {
+        margin-left: auto;
+        margin-right: 10px;
+    }
 </style>
 
 <header>
@@ -34,6 +39,7 @@
         <a routerLink="products">
             <h1>Naturalia</h1>
         </a>
+        <span>Hi {{user.firstName}}</span>
         <div class="navButtons">
             <button routerLink="cart" mat-raised-button color="accent">
                 <i class="fas fa-cart-plus"></i>

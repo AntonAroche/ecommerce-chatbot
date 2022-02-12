@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ITEMS } from '../../mockItems'
+import { ITEMS } from '../../models'
 
 @Component({
   selector: 'app-products',

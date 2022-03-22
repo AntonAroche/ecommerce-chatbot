@@ -2,18 +2,29 @@
     .item {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        border: 1px solid lightgray;
+        border: 1px solid rgba(211, 211, 211, 0.5);
+        box-shadow: 2px 4px rgba(211, 211, 211, 0.5);
+        border-radius: 5px;
         margin: 1em;
         padding: 1em;
     }
 
     .info {
+        margin-top: 1em;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .infomain {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: left;
+        justify-content: space-between;
+        align-items: flex-start;
     }
 
     .title {
@@ -25,17 +36,22 @@
         margin-bottom: 0.5em;
     }
 
-    button {
-        width: 200px;
+    .addtocart {
+        margin-left: 1em;
+        width: 120px !important;
+        min-width: unset !important;
     }
 </style>
 
 <div class="item">
     <img height="180" [src]="item.src" />
     <div class="info">
-        <span class=title>{{item.name}}</span>
-        <span class=description>{{item.description}}</span>
-        <span><strong>Price:</strong> ${{item.price}}</span>
-        <button mat-raised-button color="accent" class="btn btn-primary" (click)=addtocart()>Add to cart</button>
+        <div class="infomain">
+            <span class="title">{{item.name}}</span>
+            <span><strong>${{item.price}}</strong></span>
+        </div>
+        <button mat-raised-button color="accent" class="addtocart">
+            About
+        </button>
     </div>
 </div>

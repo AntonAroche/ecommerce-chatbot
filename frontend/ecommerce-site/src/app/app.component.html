@@ -37,8 +37,8 @@
             <div class="clearfix"></div>
 
             <div class="message-box">
-                <input type="text" (keydown.enter)="pushData()" [(ngModel)]="userMessage" class="message-input"
-                    placeholder="Type message..." />
+                <input type="text" (keydown.enter)="pushData()" (disabled)="isBotActive" [(ngModel)]="userMessage"
+                    class="message-input" placeholder="Type message..." />
                 <div type="submit" class="noselect message-submit" (click)="pushData()">
                     Send
                 </div>

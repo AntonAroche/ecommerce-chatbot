@@ -10,6 +10,19 @@ export class CartService {
   public productList = new BehaviorSubject<any>([]);
 
   constructor() { }
+
+  getCartItem(item: StoreItem) {
+    const found = this.cartItemList.find(i => i.item.id === item.id)
+    if (found) {
+      return found
+    }
+    return {
+      item,
+      quantity: 0,
+      subtotal: 0,
+    }
+  }
+
   getProducts() {
     return this.productList.asObservable();
   }

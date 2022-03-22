@@ -9,13 +9,6 @@ import { StoreItem } from '../../models'
 
 export class ItemComponent implements OnInit {
   @Input() item: StoreItem
-  constructor(private cartService: CartService) { }
-
   ngOnInit(): void {
   }
-
-  addtocart() {
-    this.cartService.addToCart(this.item)
-  }
-
 }

@@ -3,6 +3,8 @@
         background-color: #1fd163;
         color: rgb(230, 244, 248);
         font-weight: 600;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
     }
 
     a {
@@ -39,7 +41,7 @@
         <a routerLink="products">
             <h1>Naturalia</h1>
         </a>
-        <span>Hi {{user.firstName}}</span>
+        <span>Hi {{user.username}}</span>
         <div class="navButtons">
             <button routerLink="cart" mat-raised-button color="accent">
                 <i class="fas fa-cart-plus"></i>

@@ -1,0 +1,255 @@
+<style>
+    .card {
+        height: 60vh;
+        margin: 25px;
+        padding: 25px;
+    }
+
+    .center img {
+        text-decoration: none;
+        color: inherit;
+        border: none;
+        outline: none;
+        height: 162px;
+        width: 250px;
+        margin: 20px 0px;
+    }
+
+    h4,
+    h6 {
+        font-weight: 400;
+    }
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .card-table {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: none;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: .25rem;
+    }
+
+    .center .btn {
+        font-size: 14px !important;
+        margin-top: 20px !important;
+        font-weight: 400;
+        padding: 12px 72px;
+        border-radius: 3px !important;
+    }
+
+    .btn-scolor {
+        background-color: rgb(66, 209, 248);
+    }
+
+    .btn-pcolor {
+        background-color: #69F0AD
+    }
+
+    .btn-dcolor {
+        background-color: #f55050
+    }
+
+    .item-container {
+        margin-top: 25px;
+        margin-bottom: 35px;
+    }
+
+    .spacedrow {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+</style>
+
+<ng-container *ngIf="products.length ==0">
+    <div class="container item-container">
+        <div class="py-2 text-center">
+            <h2>Checkout form</h2>
+            <p class="lead">Use this form to enter your information and check out your items.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge badge-secondary badge-pill">{{totalItem}}</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <div *ngFor="let product of products;">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">{{product.item.name}}</h6>
+                                <small class="text-muted">{{product.item.description}}</small>
+                            </div>
+                            <div>
+                                <h6 class="my-0">{{product.quantity}}</h6>
+                                <small class="text-muted">${{product.subtotal}}</small>
+                            </div>
+
+                        </li>
+                    </div>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (CAD)</span>
+                        <strong>${{grandTotal}}</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Billing address</h4>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" formControlName="firstName" value={{user.firstName}}
+                                [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" required>
+                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                First name is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3 form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" formControlName="lastName" value={{user.lastName}}
+                                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" required>
+                            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                Last name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="you@example.com"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" email>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" formControlName="address" placeholder="1234 Main St"
+                            [ngClass]="{ 'is-invalid': submitted && f.address.errors }" required>
+                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                            Please enter your shipping address.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3 form-group">
+                            <label for="country">Country</label>
+                            <select class="custom-select d-block w-100" (change)="changeCountry($event)"
+                                formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
+                                required>
+                                <option value="">Choose...</option>
+                                <option value="Canada">Canada</option>
+                            </select>
+                            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                Please select a valid country.
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="province">Province</label>
+                            <select class="custom-select d-block w-100" formControlName="province"
+                                (change)="changeProvince($event)"
+                                [ngClass]="{ 'is-invalid': submitted && f.province.errors }" required>
+                                <option value="">Choose...</option>
+                                <option *ngFor="let province of Province" [ngValue]="province">
+                                    {{province}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f.province.errors" class="invalid-feedback">
+                                Please select a valid province.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="postal">Postal Code</label>
+                            <input type="text" class="form-control" id="postal" placeholder="H1H 1H1"
+                                formControlName="postal" [ngClass]="{ 'is-invalid': submitted && f.postal.errors }"
+                                required>
+                            <div *ngIf="submitted && f.postal.errors" class="invalid-feedback">
+                                Postal code is required.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <h4 class="mb-3">Payment</h4>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" type="radio" class="custom-control-input" value="Credit card"
+                                formControlName="cardType" required>
+                            <label class="custom-control-label" for="credit">Credit card</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="debit" type="radio" class="custom-control-input" value="Debit card"
+                                formControlName="cardType" required>
+                            <label class="custom-control-label" for="debit">Debit card</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="ccName">Name on card</label>
+                            <input type="text" class="form-control" placeholder="" formControlName="ccName"
+                                [ngClass]="{ 'is-invalid': submitted && f.ccName.errors }" required>
+                            <small class="text-muted">Full name as displayed on card</small>
+                            <div *ngIf="submitted && f.ccName.errors" class="invalid-feedback">
+                                Name on card is required
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="ccNum">Credit card number</label>
+                            <input type="text" class="form-control" placeholder="" formControlName="ccNum"
+                                [ngClass]="{ 'is-invalid': submitted && f.ccNum.errors }" required>
+                            <div *ngIf="submitted && f.ccNum.errors" class="invalid-feedback">
+                                Credit card number is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="exp">Expiration</label>
+                            <input type="text" class="form-control" placeholder="" formControlName="exp"
+                                [ngClass]="{ 'is-invalid': submitted && f.exp.errors }" required>
+                            <div *ngIf="submitted && f.exp.errors" class="invalid-feedback">
+                                Expiration date required
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" placeholder="" formControlName="cvv"
+                                [ngClass]="{ 'is-invalid': submitted && f.cvv.errors }" required>
+                            <div *ngIf="submitted && f.cvv.errors" class="invalid-feedback">
+                                Valid security code required
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg col-12" type="submit">Checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="products.length !=0">
+    <div class="container">
+        <div class="center">
+            <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+                alt="">
+            <h3>Your cart is empty!</h3>
+            <h5>Return to the store to add items:</h5>
+            <button routerLink="/products" style="border:none;" class="btn btn-primary btn-pcolor">Shop Now</button>
+        </div>
+    </div>
+</ng-container>

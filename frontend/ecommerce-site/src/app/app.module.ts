@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from "@angular/material/dialog";
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +24,9 @@ import { FooterComponent } from './component/footer/footer.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { AlertComponent } from './component/alert/alert.component';
-import { DescriptionComponent } from './component/description/description.component';
+import { DetailsComponent } from './component/details/details.component';
+import { CheckoutComponent } from './component/checkout/checkout.component';
+import { SuccessComponent } from './component/success/success.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import { DescriptionComponent } from './component/description/description.compon
     LoginComponent,
     RegisterComponent,
     AlertComponent,
-    DescriptionComponent,
+    DetailsComponent,
+    CheckoutComponent,
+    SuccessComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +51,7 @@ import { DescriptionComponent } from './component/description/description.compon
     MatButtonModule,
     MatSidenavModule,
     NgbModule,
+    MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

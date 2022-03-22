@@ -5,27 +5,27 @@ import { catchError, retry } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
-export interface ChatbotResponse {
+export interface ProductsResponse {
   intent: string;
   entity: string;
 }
-
-const httpOptions = {
-  observe: 'body',
-  responseType: 'text'
-}
-
 @Injectable({
   providedIn: 'root'
 })
-export class ChatbotService {
-
+export class ProductService {
+  public options = {
+    observe: 'body',
+    responseType: 'json'
+  }
   constructor(private http: HttpClient) { }
 
   getResponse(msg: String) {
     const body = {
       user_input: msg
     }
-    return this.http.post(`${environment.backendUrl}/Chatbot/`, body)
+    return this.http.get<ProductsResponse>(`${environment.backendUrl}/Chatbot`)
+      .subscribe(data => {
+
+      })
   }
 }

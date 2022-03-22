@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-
+import { ChatbotService } from './service';
+import { chatbot_response } from './helpers/dialogflow'
 
 @Component({
   selector: 'app-root',
@@ -16,19 +17,14 @@ export class AppComponent {
   }
 
   @ViewChild('autoScroll', { static: true }) private myScrollContainer: ElementRef;
-  @Input() set serverResponse(value: string) {
-    this.addServerResponse(value);
-  }
-  @Output() onMessageInput: EventEmitter<any> = new EventEmitter<any>();
   messages = [];
-  message = ''
-  constructor() { }
+  confirming = false;
+  pendingMsg = ''
   userMessage = '';
   isModalActive = false;
   isBotActive = false;
-  ngOnInit(): void {
-    this.messages = [];
-  }
+  constructor(private chatbot: ChatbotService) { }
+
 
   showDialog() {
     this.isModalActive = true;
@@ -36,6 +32,7 @@ export class AppComponent {
     modal_t.classList.remove('hidden-chat');
     modal_t.classList.add('show-chat');
   }
+
   closeDialog() {
     this.isModalActive = false;
     let modal_t = document.getElementById('chat_modal');
@@ -43,18 +40,38 @@ export class AppComponent {
     modal_t.classList.add('hidden-chat');
   }
 
-  setData() {
-    this.addServerResponse(this.message)
-    this.message = ""
-  }
   pushData() {
     if (this.userMessage.trim() != '') {
-      this.onMessage(this.userMessage);
-      this.messages.push({ type: 'user', message: this.userMessage });
+      const message = this.userMessage
       this.userMessage = '';
-      this.isBotActive = true;
-      this.scrollToBottom();
+      this.messages.push({ type: 'user', message, });
+      if (this.confirming === true) {
+        if (message === 'y') {
+          this.addServerResponse(this.pendingMsg)
+        } else {
+          this.addServerResponse('Sorry I do not understand, could you please reformulate?')
+        }
+        this.pendingMsg = ''
+        this.confirming = false;
+      } else {
+        this.isBotActive = true;
+        this.scrollToBottom();
+        this.getResponse(message)
+      }
     }
+  }
+
+  getResponse(message) {
+    this.chatbot.getResponse(message).subscribe((data: any) => {
+      const { intent, entity } = data
+      if (intent === "Greeting") {
+        this.addServerResponse("Hello!")
+      } else {
+        this.pendingMsg = chatbot_response(data.intent, data.entity)
+        this.confirming = true;
+        this.addServerResponse(`Would you like to talk about ${intent}? Answer by typing y or n`)
+      }
+    })
   }
 
   addServerResponse(serverResponse) {
@@ -75,9 +92,5 @@ export class AppComponent {
         });
       }, 100);
     } catch (err) { }
-  }
-
-  public onMessage(date: any): void {
-    this.onMessageInput.emit(date.trim());
   }
 }

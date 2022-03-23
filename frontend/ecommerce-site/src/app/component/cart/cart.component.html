@@ -48,18 +48,6 @@
         border-radius: 3px !important;
     }
 
-    .btn-scolor {
-        background-color: rgb(66, 209, 248);
-    }
-
-    .btn-pcolor {
-        background-color: #69F0AD
-    }
-
-    .btn-dcolor {
-        background-color: #f55050
-    }
-
     .item-container {
         margin-top: 25px;
     }
@@ -70,13 +58,13 @@
     }
 
     .small-btn {
-        margin-left: 0.5em;
-        width: 30px !important;
+        margin-left: 0.3em;
+        width: 40px !important;
         min-width: unset !important;
     }
 
     i.insmall {
-        margin-left: -6px;
+        margin-left: -2px;
     }
 </style>
 
@@ -104,29 +92,31 @@
                             <td><img style="width: 120px;" src="{{cartItem.item.src}}"></td>
                             <td style="width: 22%;">{{cartItem.item.description}}</td>
                             <th style="width: 10%;">${{cartItem.item.price}}</th>
-                            <td style="width: 10%;">{{cartItem.quantity}}
+                            <td style="width: 12%;">{{cartItem.quantity}}
                                 <button (click)="addToQuantity(cartItem)" mat-raised-button color="accent"
                                     class="btn-primary small-btn add-btn">
                                     <i class="fas fa-plus insmall"></i>
                                 </button>
-                                <button (click)="removeFromQuantity(cartItem)" mat-raised-button
-                                    class="btn-secondary small-btn btn-dcolor">
+                                <button (click)="removeFromQuantity(cartItem)" mat-raised-button color="warn"
+                                    class="btn-secondary small-btn">
                                     <i class="fas fa-minus insmall"></i>
                                 </button>
                             </td>
                             <td style="width: 12%;">${{cartItem.subtotal}}</td>
                             <td>
-                                <button (click)="removeItem(cartItem)" class="btn btn-danger btn-dcolor"><i
-                                        class="fas fa-trash-alt"></i></button>
+                                <button mat-raised-button (click)="removeItem(cartItem)" color="warn"
+                                    class="small-btn"><i class="fas fa-trash-alt insmall"></i></button>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4"></td>
-                            <td><button mat-raised-button routerLink="/checkout"
-                                    class="btn btn-secondary btn-scolor">Checkout</button></td>
-                            <td><button routerLink="/products" mat-raised-button class="btn-primary btn-pcolor">Shop
+                            <td><button mat-raised-button color="primary" routerLink="/checkout"
+                                    class="btn btn-secondary">Checkout</button></td>
+                            <td><button routerLink="/products" mat-raised-button color="accent" class="btn-primary">Shop
                                     More</button></td>
-                            <td><button (click)="emptycart()" class="btn btn-danger btn-dcolor">Empty Cart</button></td>
+                            <td><button (click)="emptycart()" color="warn" mat-raised-button
+                                    class="btn btn-danger">Empty
+                                    Cart</button></td>
                             <td><strong>Grand Total : ${{grandTotal}}</strong></td>
                         </tr>
                     </tbody>
@@ -144,7 +134,7 @@
                 alt="">
             <h3>Your cart is empty!</h3>
             <h5>Return to the store to add items:</h5>
-            <button routerLink="/products" style="border:none;" class="btn btn-primary btn-pcolor">Shop Now</button>
+            <button routerLink="/products" style="border:none;" class="btn btn-primary">Shop Now</button>
         </div>
     </div>
 </ng-container>

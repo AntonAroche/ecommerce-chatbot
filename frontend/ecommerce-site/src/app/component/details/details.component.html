@@ -27,8 +27,10 @@
 
     ::ng-deep mat-dialog-container {
         background-color: white !important;
-        color: #333333 !important;
-        border: 1px solid lightgray !important;
+        color: rgb(45, 55, 85) !important;
+        border: 3px solid rgba(187, 204, 250, 0.5) !important;
+        box-shadow: 1.5px 3px rgba(187, 204, 250, 0.5) !important;
+        border-radius: 5px;
     }
 
     .actions {
@@ -40,7 +42,7 @@
     }
 
     .carttext {
-        color: #2e5418;
+        color: #013b68;
         font-weight: bold;
     }
 
@@ -49,10 +51,6 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-    }
-
-    .btn-dcolor {
-        background-color: #f55050
     }
 
     .btns {
@@ -78,10 +76,10 @@
         <button mat-raised-button color="accent" class="btns" cdkFocusInitial (click)=addToCart()>
             <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
-        <button mat-raised-button class="btns btn-dcolor" cdkFocusInitial (click)=removeFromCart()>
+        <button mat-raised-button color="warn" class="btns" cdkFocusInitial (click)=removeFromCart()>
             <i class="fa fa-minus" aria-hidden="true"></i>
         </button>
-        <button mat-raised-button mat-dialog-close class="btns">Done</button>
+        <button mat-raised-button mat-dialog-close color="accent" class="btns">Done</button>
     </div>
 
 </div>

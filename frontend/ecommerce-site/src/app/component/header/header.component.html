@@ -1,6 +1,6 @@
 <style>
     .toolbar {
-        background-color: #1fd163;
+        background-color: #1565C0;
         color: rgb(230, 244, 248);
         font-weight: 600;
         border-bottom-left-radius: 7px;
@@ -19,7 +19,7 @@
     .count {
         margin-left: 5px;
         font-size: 10px;
-        background-color: #20D163;
+        background-color: #1565C0;
     }
 
     .navButtons {
@@ -39,9 +39,9 @@
 <header>
     <div class="navbar shadow-sm toolbar">
         <a routerLink="products">
-            <h1>Naturalia</h1>
+            <h1>Technautica</h1>
         </a>
-        <span>Hi {{user.username}}</span>
+        <span *ngIf="username">Hi {{username}}</span>
         <div class="navButtons">
             <button routerLink="cart" mat-raised-button color="accent">
                 <i class="fas fa-cart-plus"></i>

@@ -7,6 +7,7 @@ import { AccountService, AlertService } from '../../service';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
+  user;
   form: FormGroup;
   loading = false;
   submitted = false;
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = this.accountService.userValue;
+
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -54,5 +57,11 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  logout() {
+    this.accountService.logout()
+    this.user = null
+    window.location.reload()
   }
 }

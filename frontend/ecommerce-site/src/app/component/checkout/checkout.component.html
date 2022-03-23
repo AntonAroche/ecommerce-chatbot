@@ -48,16 +48,8 @@
         border-radius: 3px !important;
     }
 
-    .btn-scolor {
-        background-color: rgb(66, 209, 248);
-    }
-
-    .btn-pcolor {
-        background-color: #69F0AD
-    }
-
-    .btn-dcolor {
-        background-color: #f55050
+    i.insmall {
+        margin-left: -2px;
     }
 
     .item-container {
@@ -72,7 +64,7 @@
     }
 </style>
 
-<ng-container *ngIf="products.length ==0">
+<ng-container *ngIf="products.length !==0">
     <div class="container item-container">
         <div class="py-2 text-center">
             <h2>Checkout form</h2>
@@ -242,7 +234,7 @@
 </ng-container>
 
 
-<ng-container *ngIf="products.length !=0">
+<ng-container *ngIf="products.length ==0">
     <div class="container">
         <div class="center">
             <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"

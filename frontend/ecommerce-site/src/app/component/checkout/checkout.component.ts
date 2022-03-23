@@ -61,7 +61,7 @@ export class CheckoutComponent implements OnInit {
       cardType: ['', Validators.required],
     });
 
-    this.form.controls.cardType.setValue('Credit ca333rd');
+    this.form.controls.cardType.setValue('Credit card');
   }
 
   get f() {

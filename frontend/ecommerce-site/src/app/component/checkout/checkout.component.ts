@@ -4,6 +4,9 @@ import { StoreItem, CartItem, User, Order } from '../../models'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/service';
 import { PathLocationStrategy } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessComponent } from '../success/success.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -30,9 +33,11 @@ export class CheckoutComponent implements OnInit {
   public products: CartItem[] = [];
   public grandTotal !: number;
   constructor(
+    public dialog: MatDialog,
     private cartService: CartService,
     private accountService: AccountService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private router: Router) {
     this.accountService.user.subscribe({
       next: (u: User) => this.user = u,
     })
@@ -62,6 +67,8 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.form.controls.cardType.setValue('Credit card');
+    this.form.controls.firstName.setValue(this.user.firstName);
+    this.form.controls.lastName.setValue(this.user.lastName);
   }
 
   get f() {
@@ -88,7 +95,7 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    const order: Order = {
+    const order = {
       items: this.products,
       firstName: this.f.firstName.value,
       lastName: this.f.lastName.value,
@@ -99,21 +106,18 @@ export class CheckoutComponent implements OnInit {
       postal: this.f.postal.value,
       ccNum: this.f.ccNum.value,
       cardType: this.f.cardType.value,
+      total: this.grandTotal,
     }
-    alert("succ")
-    console.log(order)
+
+    const dialogRef = this.dialog.open(SuccessComponent, {
+      width: '400px',
+      data: { ...order },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.cartService.removeAllCart()
+      this.router.navigate(["/products"])
+    });
   }
 
-  addToQuantity(item: CartItem) {
-    this.cartService.addToQuantity(item)
-  }
-  removeFromQuantity(item: CartItem) {
-    this.cartService.removeFromQuantity(item)
-  }
-  removeItem(item: CartItem) {
-    this.cartService.removeCartItem(item);
-  }
-  emptycart() {
-    this.cartService.removeAllCart();
-  }
 }

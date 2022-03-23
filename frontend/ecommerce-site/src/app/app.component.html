@@ -1,10 +1,23 @@
 <style>
-    .divider {
+    .divider-top {
+        padding-top: 50px;
+    }
+
+    .divider-bottom {
         padding-bottom: 50px;
+    }
+
+    .app-header {
+        position: fixed;
+        top: 0;
+        width: 100%
     }
 </style>
 
-<app-header></app-header>
+<div class="app-header">
+    <app-header></app-header>
+</div>
+<div class=divider-top></div>
 <alert></alert>
 <router-outlet></router-outlet>
 <section class="noselect container">
@@ -54,5 +67,5 @@
         <i class="float-icon fa fa-times-circle"></i>
     </div>
 </div>
-<div class=divider></div>
+<div class=divider-bottom></div>
 <app-footer></app-footer>

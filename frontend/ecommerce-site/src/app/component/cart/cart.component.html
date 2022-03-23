@@ -89,7 +89,7 @@
                         <tr *ngFor="let cartItem of products; let i = index">
                             <td>{{i+1}}</td>
                             <td>{{cartItem.item.name}}</td>
-                            <td><img style="width: 120px;" src="{{cartItem.item.src}}"></td>
+                            <td><img style="width: 120px;" src="{{cartItem.item.picture}}"></td>
                             <td style="width: 22%;">{{cartItem.item.description}}</td>
                             <th style="width: 10%;">${{cartItem.item.price}}</th>
                             <td style="width: 12%;">{{cartItem.quantity}}

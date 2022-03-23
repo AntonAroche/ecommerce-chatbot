@@ -36,20 +36,19 @@
     }
 </style>
 
-<header>
-    <div class="navbar shadow-sm toolbar">
-        <a routerLink="products">
-            <h1>Technautica</h1>
-        </a>
-        <span *ngIf="username">Hi {{username}}</span>
-        <div class="navButtons">
-            <button routerLink="cart" mat-raised-button color="accent">
-                <i class="fas fa-cart-plus"></i>
-                <div class="badge count">{{totalItem}}</div>
-            </button>
-            <button routerLink="login" mat-raised-button color="accent">
-                <i class="fas fa-user" aria-hidden="true"></i>
-            </button>
-        </div>
+
+<div class="navbar shadow-sm toolbar page-header">
+    <a routerLink="products">
+        <h1>Technautica</h1>
+    </a>
+    <span *ngIf="username">Hi {{username}}</span>
+    <div class="navButtons">
+        <button routerLink="cart" mat-raised-button color="accent">
+            <i class="fas fa-cart-plus"></i>
+            <div class="badge count">{{totalItem}}</div>
+        </button>
+        <button routerLink="login" mat-raised-button color="accent">
+            <i class="fas fa-user" aria-hidden="true"></i>
+        </button>
     </div>
-</header>
+</div>

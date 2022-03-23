@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ITEMS, StoreItem } from '../../models'
+import { StoreItem } from '../../models'
 import { MatDialog } from '@angular/material/dialog';
 import { DetailsComponent } from '../details/details.component';
+import { ProductService } from 'src/app/service/product.service';
 
 export interface DialogData {
   item: StoreItem
@@ -13,9 +14,9 @@ export interface DialogData {
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  items = ITEMS
+  items: StoreItem[] = []
   showFiller = false;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private productService: ProductService) { }
 
   openDialog(item: StoreItem): void {
     const dialogRef = this.dialog.open(DetailsComponent, {
@@ -28,6 +29,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-
-  ngOnInit() { }
+  ngOnInit() {
+    this.productService.getProducts()
+      .subscribe(res => {
+        this.items = res
+      })
+  }
 }

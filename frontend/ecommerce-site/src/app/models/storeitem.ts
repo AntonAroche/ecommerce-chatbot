@@ -3,5 +3,6 @@ export interface StoreItem {
     name: string;
     price: number;
     description: string;
-    src: string;
+    picture: string;
+    stock: number;
 }
